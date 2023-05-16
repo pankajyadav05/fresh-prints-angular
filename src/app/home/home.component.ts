@@ -58,9 +58,9 @@ export class HomeComponent implements OnInit {
   showNextUser() {
     if (this.currentIndex === this.total - 1) return;
 
-    if (this.currentIndex !== 0) this.saveHistory();
-
     this.currentIndex++;
+
+    this.saveHistory();
   }
 
   saveHistory() {
