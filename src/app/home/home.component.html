@@ -1,0 +1,77 @@
+<div class="component">
+  <h3>Search GitHub User</h3>
+
+  <form class="w-full" #searchForm (ngSubmit)="searchByName()">
+    <div
+      class="flex align-middle border-2 rounded-lg gap-2 p-3 border-gray-300 focus-within:border-blue-600 w-full mb-6"
+    >
+      <i class="mt-1 pi pi-search cursor-pointer" (click)="searchByName()"></i>
+      <input
+        type="search"
+        [(ngModel)]="name"
+        required
+        placeholder="Search by user name"
+        class="bg-transparent border-0 outline-none w-full"
+        [ngModelOptions]="{ standalone: true }"
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="action-btn"
+      [disabled]="!name || loading"
+      (click)="searchByName()"
+    >
+      <i class="pi pi-spin pi-spinner mr-2 mt-1" *ngIf="loading"></i> Search
+    </button>
+  </form>
+
+  <div class="mr-auto mt-8 w-full" *ngIf="submitted && !loading">
+    <div class="flex justify-between align-middle">
+      <p class="text-left">Search Results</p>
+      <p class="text-left text-xs" *ngIf="total > 0">
+        Showing {{ currentIndex + 1 }} of {{ total }}
+      </p>
+    </div>
+
+    <div
+      class="border border-gray-300 bg-white rounded-lg p-5"
+      *ngIf="total > 0; else noResultTemplate"
+    >
+      <div class="grid grid-cols-2">
+        <div>
+          <p class="">User Image</p>
+
+          <img
+            class="rounded-lg w-24"
+            [src]="
+              users[currentIndex].avatar_url ||
+              'https://cdn.landesa.org/wp-content/uploads/default-user-image.png'
+            "
+          />
+        </div>
+
+        <div>
+          <p class="">GitHub User Name</p>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-lg text-gray-500 hover:underline"
+            [href]="users[currentIndex].html_url"
+          >
+            {{ users[currentIndex].login }}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-end mt-3" *ngIf="total > 1">
+      <i class="pi pi-angle-left icon mr-3" (click)="showPrevUser()"></i>
+      <i class="pi pi-angle-right icon" (click)="showNextUser()"></i>
+    </div>
+  </div>
+</div>
+
+<ng-template #noResultTemplate>
+  <p class="text-lg text-gray-500 text-bold">No result found</p>
+</ng-template>

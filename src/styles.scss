@@ -1,1 +1,45 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap");
+
+@layer base {
+  h1 {
+    @apply text-3xl font-bold;
+  }
+  h2 {
+    @apply text-2xl font-bold;
+  }
+  h3 {
+    @apply text-xl font-bold;
+  }
+  h4 {
+    @apply text-base font-bold;
+  }
+  p {
+    @apply text-sm font-semibold text-gray-400 mb-2;
+  }
+  a {
+    @apply no-underline font-semibold;
+  }
+}
+
+* {
+  font-family: "Nunito", sans-serif;
+}
+
+@import "primeicons/primeicons.css";
+
+body {
+  @apply bg-slate-100 text-gray-700;
+}
+
+.component {
+  min-height: calc(100vh - 60px);
+  @apply flex flex-col gap-6 items-center justify-center mx-auto max-w-[400px];
+}
+
+.action-btn {
+  @apply bg-green-600 rounded-lg w-full text-white py-3 drop-shadow-lg hover:drop-shadow-none disabled:bg-green-300;
+}

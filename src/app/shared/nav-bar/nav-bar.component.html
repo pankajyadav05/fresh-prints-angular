@@ -1,0 +1,9 @@
+<nav class="flex justify-end align-middle px-12 pt-4 bg-white h-[50px]">
+  <a
+    class="mx-3 px-3"
+    [routerLink]="[element.path]"
+    routerLinkActive="active"
+    *ngFor="let element of navbarElements"
+    >{{ element.name }}</a
+  >
+</nav>
